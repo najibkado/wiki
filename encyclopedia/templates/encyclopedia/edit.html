@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container-fluid">
+    <h1>Edit {{ title }}</h1>
+
+    <form action="{% url 'edit_entry' name=title %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Title</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="title" value="{{ title }}">
+        </div>
+    
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Encyclopedia entry</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content">{{ entry }}</textarea>
+        </div>
+    
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+      </form>
+</div>
+{% endblock %}
